@@ -1,5 +1,7 @@
+import ProjectForm from './components/ProjectForm';
+
 function App() {
-  return <div>Proyecto iniciado</div>;
+  return <ProjectForm />;
 }
 
 export default App;
