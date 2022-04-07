@@ -8,7 +8,7 @@ const ProjectForm = () => {
   return (
     <Container
       sx={{
-        padding: '32px 0',
+        padding: '32px 16px',
         background: '#FFFFFF',
         boxShadow: ' 0px 2px 4px rgba(0, 0, 0, 0.15)',
       }}

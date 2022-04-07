@@ -1,6 +1,7 @@
 import { Box } from '@mui/system';
 import React from 'react';
-import MenuOpenIcon from '../Icons/MenuOpenIcon';
+import MenuOpen from '../MenuOpen/MenuOpen';
+// import MenuOpenIcon from '../Icons/MenuOpenIcon';
 import Person from '../Person/Person';
 import ProjectDate from './ProjectDate';
 import ProjectName from './ProjectName';
@@ -12,6 +13,8 @@ const ProjectContainer = () => {
         display: 'flex',
         alignItems: 'start',
         justifyContent: 'space-between',
+        padding: '0 16px',
+        backgroundColor: '#fff',
       }}
     >
       <Box
@@ -22,7 +25,8 @@ const ProjectContainer = () => {
         <Person />
       </Box>
       <Box>
-        <MenuOpenIcon />
+        {/* <MenuOpenIcon /> */}
+        <MenuOpen />
       </Box>
     </Box>
   );

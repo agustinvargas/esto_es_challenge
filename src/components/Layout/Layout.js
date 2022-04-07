@@ -3,7 +3,7 @@ import React from 'react';
 
 const Layout = ({ children }) => {
   return (
-    <Container sx={{ width: { xs: '328px', md: '1096px' } }}>
+    <Container sx={{ padding: { xs: '0px 16px' } }} fluid>
       {children}
     </Container>
   );

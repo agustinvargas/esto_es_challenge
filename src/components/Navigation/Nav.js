@@ -11,7 +11,6 @@ const Nav = () => {
         alignItems: 'center',
         gap: '8px',
         boxShadow: 'inset 0px -1px 0px #D9D9D9',
-        background: '#FFFFFF',
         height: '40px',
       }}
     >

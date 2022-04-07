@@ -4,7 +4,9 @@ import Nav from '../Navigation/Nav';
 
 const Header = () => {
   return (
-    <Box sx={{ marginBottom: '16px' }}>
+    <Box
+      sx={{ marginBottom: '16px', padding: '0px 16px', background: '#FFFFFF' }}
+    >
       <Box
         sx={{
           background: '#FFFFFF',
