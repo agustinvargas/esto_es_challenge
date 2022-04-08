@@ -9,7 +9,14 @@ const Person = ({ avatar, name }) => {
   }
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', gap: '9px' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '9px',
+        marginTop: { xs: '4px', md: 'initial' },
+      }}
+    >
       {avatar && name ? (
         <Avatar alt={name} src={avatar} sx={{ width: 24, height: 24 }} />
       ) : (

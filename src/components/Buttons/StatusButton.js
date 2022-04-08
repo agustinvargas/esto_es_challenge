@@ -12,10 +12,11 @@ const StatusButton = ({ status }) => {
         color: '#595959',
         fontSize: '12px',
         textTransform: 'none',
+        cursor: 'inherit',
       }}
       variant='outlined'
     >
-      {status ? 'Enabled' : 'Disabled'}
+      {status}
     </Button>
   );
 };

@@ -11,7 +11,6 @@ const InputSelect = ({
   id,
   helperText,
 }) => {
-  console.log('DATA', options);
   return (
     <Box id={id} sx={{ marginBottom: '16px' }}>
       <InputLabel label={label} />
@@ -30,7 +29,6 @@ const InputSelect = ({
         value={value}
         onChange={handleChange}
         name={id}
-        // renderValue={value => (value !== '' ? value : placeholder)}
       >
         <MenuItem value='' disabled>
           Choose an option
