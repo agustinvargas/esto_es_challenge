@@ -1,365 +1,69 @@
-import * as React from 'react';
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import ProjectInfo from './ProjectInfo';
-import Person from '../Person/Person';
-import StatusButton from '../Buttons/StatusButton';
-import MenuOpen from '../MenuOpen/MenuOpen';
+import React from 'react';
 import { Box } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
+import Person from '../Person/Person';
+import MenuOpen from '../MenuOpen/MenuOpen';
+import StatusButton from '../Buttons/StatusButton';
+import ProjectInfo from './ProjectInfo';
 
-const data = [
-  {
-    id: 1,
-    projectInfo: {
-      name: 'Project 1',
-      date: 'Creation date: 12/12/2019',
-    },
-    projectManager: {
-      name: 'John Doe',
-      avatar: false,
-    },
-    assignedTo: {
-      name: 'Ignacio Truffa',
-      avatar:
-        'https://www.dzoom.org.es/wp-content/uploads/2010/09/retrato-fondo-profundidad-campo-734x489.jpg',
-    },
-    status: {
-      enabled: true,
-    },
-  },
-  {
-    id: 2,
-    projectInfo: {
-      name: 'Aroject 2',
-      date: 'Creation date: 12/12/2019',
-    },
-    projectManager: {
-      name: 'John Doe',
-      avatar: false,
-    },
-    assignedTo: {
-      name: 'Juan Perez',
-      avatar:
-        'https://www.dzoom.org.es/wp-content/uploads/2010/09/retrato-fondo-profundidad-campo-734x489.jpg',
-    },
-    status: {
-      enabled: true,
-    },
-  },
-  {
-    id: 2,
-    projectInfo: {
-      name: 'Aroject 2',
-      date: 'Creation date: 12/12/2019',
-    },
-    projectManager: {
-      name: 'John Doe',
-      avatar: false,
-    },
-    assignedTo: {
-      name: 'Juan Perez',
-      avatar:
-        'https://www.dzoom.org.es/wp-content/uploads/2010/09/retrato-fondo-profundidad-campo-734x489.jpg',
-    },
-    status: {
-      enabled: true,
-    },
-  },
-  {
-    id: 2,
-    projectInfo: {
-      name: 'Aroject 2',
-      date: 'Creation date: 12/12/2019',
-    },
-    projectManager: {
-      name: 'John Doe',
-      avatar: false,
-    },
-    assignedTo: {
-      name: 'Juan Perez',
-      avatar:
-        'https://www.dzoom.org.es/wp-content/uploads/2010/09/retrato-fondo-profundidad-campo-734x489.jpg',
-    },
-    status: {
-      enabled: true,
-    },
-  },
-  {
-    id: 2,
-    projectInfo: {
-      name: 'Aroject 2',
-      date: 'Creation date: 12/12/2019',
-    },
-    projectManager: {
-      name: 'John Doe',
-      avatar: false,
-    },
-    assignedTo: {
-      name: 'Juan Perez',
-      avatar:
-        'https://www.dzoom.org.es/wp-content/uploads/2010/09/retrato-fondo-profundidad-campo-734x489.jpg',
-    },
-    status: {
-      enabled: true,
-    },
-  },
-  {
-    id: 2,
-    projectInfo: {
-      name: 'Aroject 2',
-      date: 'Creation date: 12/12/2019',
-    },
-    projectManager: {
-      name: 'John Doe',
-      avatar: false,
-    },
-    assignedTo: {
-      name: 'Juan Perez',
-      avatar:
-        'https://www.dzoom.org.es/wp-content/uploads/2010/09/retrato-fondo-profundidad-campo-734x489.jpg',
-    },
-    status: {
-      enabled: true,
-    },
-  },
-  {
-    id: 2,
-    projectInfo: {
-      name: 'Aroject 2',
-      date: 'Creation date: 12/12/2019',
-    },
-    projectManager: {
-      name: 'John Doe',
-      avatar: false,
-    },
-    assignedTo: {
-      name: 'Juan Perez',
-      avatar:
-        'https://www.dzoom.org.es/wp-content/uploads/2010/09/retrato-fondo-profundidad-campo-734x489.jpg',
-    },
-    status: {
-      enabled: true,
-    },
-  },
-  {
-    id: 2,
-    projectInfo: {
-      name: 'Aroject 2',
-      date: 'Creation date: 12/12/2019',
-    },
-    projectManager: {
-      name: 'John Doe',
-      avatar: false,
-    },
-    assignedTo: {
-      name: 'Juan Perez',
-      avatar:
-        'https://www.dzoom.org.es/wp-content/uploads/2010/09/retrato-fondo-profundidad-campo-734x489.jpg',
-    },
-    status: {
-      enabled: true,
-    },
-  },
-  {
-    id: 2,
-    projectInfo: {
-      name: 'Aroject 2',
-      date: 'Creation date: 12/12/2019',
-    },
-    projectManager: {
-      name: 'John Doe',
-      avatar: false,
-    },
-    assignedTo: {
-      name: 'Juan Perez',
-      avatar:
-        'https://www.dzoom.org.es/wp-content/uploads/2010/09/retrato-fondo-profundidad-campo-734x489.jpg',
-    },
-    status: {
-      enabled: true,
-    },
-  },
-  {
-    id: 2,
-    projectInfo: {
-      name: 'Aroject 2',
-      date: 'Creation date: 12/12/2019',
-    },
-    projectManager: {
-      name: 'John Doe',
-      avatar: false,
-    },
-    assignedTo: {
-      name: 'Juan Perez',
-      avatar:
-        'https://www.dzoom.org.es/wp-content/uploads/2010/09/retrato-fondo-profundidad-campo-734x489.jpg',
-    },
-    status: {
-      enabled: true,
-    },
-  },
-  {
-    id: 2,
-    projectInfo: {
-      name: 'Aroject 2',
-      date: 'Creation date: 12/12/2019',
-    },
-    projectManager: {
-      name: 'John Doe',
-      avatar: false,
-    },
-    assignedTo: {
-      name: 'Juan Perez',
-      avatar:
-        'https://www.dzoom.org.es/wp-content/uploads/2010/09/retrato-fondo-profundidad-campo-734x489.jpg',
-    },
-    status: {
-      enabled: true,
-    },
-  },
-  {
-    id: 2,
-    projectInfo: {
-      name: 'Aroject 2',
-      date: 'Creation date: 12/12/2019',
-    },
-    projectManager: {
-      name: 'John Doe',
-      avatar: false,
-    },
-    assignedTo: {
-      name: 'Juan Perez',
-      avatar:
-        'https://www.dzoom.org.es/wp-content/uploads/2010/09/retrato-fondo-profundidad-campo-734x489.jpg',
-    },
-    status: {
-      enabled: true,
-    },
-  },
-  {
-    id: 2,
-    projectInfo: {
-      name: 'Aroject 2',
-      date: 'Creation date: 12/12/2019',
-    },
-    projectManager: {
-      name: 'John Doe',
-      avatar: false,
-    },
-    assignedTo: {
-      name: 'Juan Perez',
-      avatar:
-        'https://www.dzoom.org.es/wp-content/uploads/2010/09/retrato-fondo-profundidad-campo-734x489.jpg',
-    },
-    status: {
-      enabled: true,
-    },
-  },
-  {
-    id: 2,
-    projectInfo: {
-      name: 'Aroject 2',
-      date: 'Creation date: 12/12/2019',
-    },
-    projectManager: {
-      name: 'John Doe',
-      avatar: false,
-    },
-    assignedTo: {
-      name: 'Juan Perez',
-      avatar:
-        'https://www.dzoom.org.es/wp-content/uploads/2010/09/retrato-fondo-profundidad-campo-734x489.jpg',
-    },
-    status: {
-      enabled: true,
-    },
-  },
-  {
-    id: 2,
-    projectInfo: {
-      name: 'Aroject 2',
-      date: 'Creation date: 12/12/2019',
-    },
-    projectManager: {
-      name: 'John Doe',
-      avatar: false,
-    },
-    assignedTo: {
-      name: 'Juan Perez',
-      avatar:
-        'https://www.dzoom.org.es/wp-content/uploads/2010/09/retrato-fondo-profundidad-campo-734x489.jpg',
-    },
-    status: {
-      enabled: true,
-    },
-  },
-];
-
-export default function ProjectListTable() {
+export default function ProjectListTable({ projects }) {
   // set table
   const columns = [
     {
-      field: 'projectInfo',
+      field: 'project_info',
       headerName: 'Project Info',
-      name: 'projectInfo',
-      //   sortable: false,
+      name: 'project_info',
       width: 398,
       renderCell: params => (
-        <ProjectInfo
-          name={params.row.projectInfo.name}
-          date={params.row.projectInfo.date}
-        />
+        <ProjectInfo name={params.row.name} date={params.row.date} />
       ),
-      sortComparator: (v1, v2) => v1.name.localeCompare(v2.name),
+      valueGetter: params => params.row.name,
+      sortable: false,
     },
     {
-      field: 'projectManager',
+      field: 'project_manager',
       headerName: 'Project Manager',
-      name: 'projectManager',
+      name: 'project_manager',
       width: 288,
       renderCell: params => (
         <Person
-          name={params.row.projectManager.name}
-          avatar={params.row.projectManager.avatar}
+          name={params.row.project_manager.name}
+          avatar={params.row.project_manager.avatar}
         />
       ),
-      sortComparator: (v1, v2) => v1.name.localeCompare(v2.name),
+      valueGetter: params => params.row.project_manager.name,
+      sortable: false,
     },
     {
-      field: 'assignedTo',
+      field: 'assigned_to',
       headerName: 'Assigned to',
-      name: 'assignedTo',
+      name: 'assigned_to',
       width: 334,
       renderCell: params => (
         <Person
-          name={params.row.assignedTo.name}
-          avatar={params.row.assignedTo.avatar}
+          name={params.row.assigned_to.name}
+          avatar={params.row.assigned_to.avatar}
         />
       ),
-      sortComparator: (v1, v2) => v1.name.localeCompare(v2.name),
+      valueGetter: params => params.row.assigned_to.name,
+      sortable: false,
     },
     {
       field: 'status',
       headerName: 'Status',
       name: 'status',
       width: 195,
-      renderCell: params => <StatusButton status={params.row.status.enabled} />,
+      sortable: false,
+      renderCell: params => <StatusButton status={params.row.status.name} />,
+      valueGetter: params => params.row.status.name,
     },
     {
       field: 'actions',
       headerName: 'Action',
       sortable: false,
-      // width: 'auto',
-
+      filterable: false,
       renderCell: params => {
-        return <MenuOpen id={params.id} />;
+        return <MenuOpen id={params.row.id} />;
       },
     },
   ];
@@ -371,14 +75,17 @@ export default function ProjectListTable() {
         background: 'white',
         boxShadow: 'inset 0px -1px 0px #D9D9D9',
         display: { xs: 'none', md: 'block' },
+        height: '100%',
       }}
     >
       <DataGrid
-        sx={{ height: '500px', padding: '19px 24px' }}
-        rows={data}
+        sx={{ height: '450px', padding: '19px 24px' }}
+        // rows={data}
+        rows={projects}
         columns={columns}
-        pageSize={10}
-        rowsPerPageOptions={[10]}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        disableSelectionOnClick
       />
     </Box>
   );

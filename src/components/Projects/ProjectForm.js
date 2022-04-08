@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, CircularProgress, Container } from '@mui/material';
+import { Container } from '@mui/material';
 import InputText from '../Inputs/InputText';
 import InputSelect from '../Inputs/InputSelect';
 import Button from '../Buttons/Button';
@@ -12,13 +12,13 @@ import {
   project_manager,
   status,
 } from '../../utils/mockData';
+import Loader from '../Loader/Loader';
 
 const ProjectForm = () => {
   const { editId } = useParams(); // If editId is present, we are editing a project
   const [project, setProject] = useState([]);
   const [loading, setLoading] = useState(false);
-  console.log('project', project);
-  console.log('editId', editId);
+
   useEffect(() => {
     if (!editId) return;
     (async () => {
@@ -55,15 +55,7 @@ const ProjectForm = () => {
   });
 
   return loading ? (
-    <Container
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        width: '100%',
-      }}
-    >
-      <CircularProgress />
-    </Container>
+    <Loader />
   ) : (
     <Formik
       enableReinitialize
@@ -78,9 +70,11 @@ const ProjectForm = () => {
       onSubmit={(val, { resetForm }) => {
         if (editId) {
           console.log('EDIT PROJECT', val);
+          alert('Edit project successful. See console for details');
           // Request API with method patch or put to update project
         } else {
           console.log('NEW PROJECT', val);
+          alert('Add project successful. See console for details');
           // Request API with method post to create project
         }
         resetForm();
@@ -150,11 +144,14 @@ const ProjectForm = () => {
                 id: 'id',
               }}
               value={values.status}
-              onBlur={handleBlur}
+              handleBlur={handleBlur}
               handleChange={handleChange}
               helperText={touched.status && errors.status}
             />
-            <Button handleClick={handleSubmit} label='Create project' />
+            <Button
+              handleClick={handleSubmit}
+              label={editId ? 'Edit project' : 'Create project'}
+            />
           </form>
         </Container>
       )}

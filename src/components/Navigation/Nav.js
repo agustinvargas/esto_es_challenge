@@ -8,7 +8,7 @@ import TitleNav from './TitleNav';
 
 const Nav = () => {
   const { pathname } = useLocation();
-  const { projectId } = useParams(); // only for edit
+  const { editId } = useParams(); // only for edit
   const navigate = useNavigate();
 
   const isHome = pathname === '/';
@@ -32,13 +32,14 @@ const Nav = () => {
           <Button
             label='Add project'
             icon={<AddIcon />}
+            h='32px'
             handleClick={() => navigate('/projects/create')}
           />
         </>
       ) : (
         <>
           <BackNav />
-          <TitleNav title={projectId ? 'Edit project' : 'Add project'} />
+          <TitleNav title={editId ? 'Edit project' : 'Add project'} />
         </>
       )}
     </Box>
