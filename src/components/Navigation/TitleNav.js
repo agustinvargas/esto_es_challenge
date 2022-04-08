@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import React from 'react';
 
-const TitleNav = () => {
+const TitleNav = ({ title }) => {
   return (
     <Typography
       sx={{
@@ -12,7 +12,7 @@ const TitleNav = () => {
       }}
       component='h2'
     >
-      Add project
+      {title}
     </Typography>
   );
 };

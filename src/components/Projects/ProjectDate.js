@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import React from 'react';
 
-const ProjectDate = () => {
+const ProjectDate = ({ date }) => {
   return (
     <Typography
       component='small'
@@ -11,7 +11,7 @@ const ProjectDate = () => {
         lineHeight: '16px',
       }}
     >
-      Creation date: 09/09/2020 10:30 am
+      {date}
     </Typography>
   );
 };

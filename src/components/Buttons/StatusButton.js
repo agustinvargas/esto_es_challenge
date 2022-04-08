@@ -11,6 +11,7 @@ const StatusButton = ({ status }) => {
         padding: '1px 8px',
         color: '#595959',
         fontSize: '12px',
+        textTransform: 'none',
       }}
       variant='outlined'
     >

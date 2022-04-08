@@ -1,10 +1,12 @@
 import React from 'react';
 import { Button as ButtonMUI } from '@mui/material';
 
-const Button = ({ label }) => {
+const Button = ({ label, icon, handleClick }) => {
   return (
     <ButtonMUI
+      onClick={handleClick}
       variant='contained'
+      startIcon={icon}
       disableElevation
       sx={{
         padding: '8px 16px',

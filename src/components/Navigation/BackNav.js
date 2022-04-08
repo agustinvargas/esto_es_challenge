@@ -1,8 +1,11 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 import BackArrowIcon from '../Icons/BackArrowIcon';
+import { useNavigate } from 'react-router-dom';
 
 const BackNav = () => {
+  const navigate = useNavigate();
+
   return (
     <Box
       sx={{
@@ -12,7 +15,9 @@ const BackNav = () => {
         fontFamily: 'Inter',
         fontSize: '12px',
         lineHeight: '22px',
+        cursor: 'pointer',
       }}
+      onClick={() => navigate(-1)}
     >
       <BackArrowIcon />
       <Typography

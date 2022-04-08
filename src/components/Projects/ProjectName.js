@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import React from 'react';
 
-const ProjectName = () => {
+const ProjectName = ({ name }) => {
   return (
     <Typography
       component='h3'
@@ -11,7 +11,7 @@ const ProjectName = () => {
         lineHeight: '20px',
       }}
     >
-      CRM Linkroom
+      {name}
     </Typography>
   );
 };

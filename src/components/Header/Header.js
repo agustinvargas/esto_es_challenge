@@ -1,18 +1,20 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Divider, Typography } from '@mui/material';
 import React from 'react';
 import Nav from '../Navigation/Nav';
 
 const Header = () => {
   return (
     <Box
-      sx={{ marginBottom: '16px', padding: '0px 16px', background: '#FFFFFF' }}
+      sx={{
+        marginBottom: '16px',
+        background: '#FFFFFF',
+      }}
     >
       <Box
         sx={{
           background: '#FFFFFF',
-          height: '40px',
-          padding: '4px 0',
-          borderBottom: '1px solid #D9D9D9',
+          padding: { xs: '4px 16px', md: '4px 48px' },
+          height: { xs: '40px', md: '56px' },
         }}
       >
         <Typography
@@ -29,6 +31,7 @@ const Header = () => {
           Logo
         </Typography>
       </Box>
+      <Divider />
       <Nav />
     </Box>
   );

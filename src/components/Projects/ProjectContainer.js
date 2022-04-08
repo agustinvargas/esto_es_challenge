@@ -4,6 +4,7 @@ import MenuOpen from '../MenuOpen/MenuOpen';
 // import MenuOpenIcon from '../Icons/MenuOpenIcon';
 import Person from '../Person/Person';
 import ProjectDate from './ProjectDate';
+import ProjectInfo from './ProjectInfo';
 import ProjectName from './ProjectName';
 
 const ProjectContainer = () => {
@@ -20,14 +21,12 @@ const ProjectContainer = () => {
       <Box
         sx={{ diplay: 'flex', flexDirection: 'column', alignItems: 'start' }}
       >
-        <ProjectName />
-        <ProjectDate />
+        <ProjectInfo />
         <Person />
       </Box>
-      <Box>
-        {/* <MenuOpenIcon /> */}
-        <MenuOpen />
-      </Box>
+      {/* <Box>
+         <MenuOpen /> 
+      </Box> */}
     </Box>
   );
 };
