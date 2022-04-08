@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Box,
   Divider,
   IconButton,
@@ -7,17 +6,26 @@ import {
   MenuItem,
   Typography,
 } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
+import { useNavigate } from 'react-router-dom';
 import DeleteIcon from '../Icons/DeleteIcon';
 import EditIcon from '../Icons/EditIcon';
 import MenuOpenIcon from '../Icons/MenuOpenIcon';
+import DialogForDelete from '../Modal/Dialog';
 
-const MenuOpen = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+const MenuOpen = ({ id }) => {
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
+  const [openConfirm, setOpenConfirm] = useState(false);
+
+  const navigate = useNavigate();
+
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -27,7 +35,6 @@ const MenuOpen = () => {
       <IconButton
         onClick={handleClick}
         size='small'
-        // sx={{ ml: 2 }}
         aria-controls={open ? 'account-menu' : undefined}
         aria-haspopup='true'
         aria-expanded={open ? 'true' : undefined}
@@ -66,7 +73,7 @@ const MenuOpen = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem>
+        <MenuItem onClick={() => navigate(`projects/edit/${id}`)}>
           <Box sx={{ display: 'flex', gap: '13.4px', alignItems: 'center' }}>
             <EditIcon />
             <Typography
@@ -78,7 +85,7 @@ const MenuOpen = () => {
           </Box>
         </MenuItem>
         <Divider light />
-        <MenuItem>
+        <MenuItem onClick={() => setOpenConfirm(true)}>
           <Box sx={{ display: 'flex', gap: '13.4px', alignItems: 'center' }}>
             <DeleteIcon />
             <Typography
@@ -90,6 +97,15 @@ const MenuOpen = () => {
           </Box>
         </MenuItem>
       </Menu>
+      {openConfirm &&
+        createPortal(
+          <DialogForDelete
+            id={id}
+            openConfirm={openConfirm}
+            setOpenConfirm={setOpenConfirm}
+          />,
+          document.getElementById('modal')
+        )}
     </>
   );
 };
