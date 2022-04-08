@@ -5,6 +5,7 @@ const Button = ({ label, icon, handleClick }) => {
   return (
     <ButtonMUI
       onClick={handleClick}
+      onSubmit={handleClick}
       variant='contained'
       startIcon={icon}
       disableElevation

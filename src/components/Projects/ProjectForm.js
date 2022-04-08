@@ -1,40 +1,164 @@
-import React, { useEffect } from 'react';
-import { Container } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Box, CircularProgress, Container } from '@mui/material';
 import InputText from '../Inputs/InputText';
 import InputSelect from '../Inputs/InputSelect';
 import Button from '../Buttons/Button';
 import { useParams } from 'react-router-dom';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import {
+  assigned_to,
+  getProject,
+  project_manager,
+  status,
+} from '../../utils/mockData';
 
 const ProjectForm = () => {
-  const { editId } = useParams();
-  // const [project, setProject] = useState(null);
+  const { editId } = useParams(); // If editId is present, we are editing a project
+  const [project, setProject] = useState([]);
+  const [loading, setLoading] = useState(false);
+  console.log('project', project);
+  console.log('editId', editId);
+  useEffect(() => {
+    if (!editId) return;
+    (async () => {
+      // Mock API call.
+      try {
+        setLoading(true);
 
-  // useEffect(() => {
-  //   if(!editId) return;
+        // In real life, we would make an API call to get the project by ID, for example:
+        // const response = fetch(
+        //   `https://jsonplaceholder.typicode.com/users/${editId}`
+        // );
+        // const project = await response.json();
 
-  //   (async()=>{
-  //     const response = await fetch(`/api/projects/${editId}`);
-  //     const project = await response.json();
-  //     setProject(project);
-  //   })()
-  // }, []);
+        const project = await getProject(editId);
+        setProject(project);
+      } catch (err) {
+        console.log(err.message);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [editId]);
 
-  return (
+  const schemaValidate = Yup.object().shape({
+    project_name: Yup.string()
+      .min(3, 'Project name must contain a minimum of three characters')
+      .required('This field is required'),
+    description: Yup.string()
+      .min(3, 'Project description must contain a minimum of three characters')
+      .required('This field is required'),
+    project_manager: Yup.string().required('This field is required'),
+    assigned_to: Yup.string().required('This field is required'),
+    status: Yup.string().required('This field is required'),
+  });
+
+  return loading ? (
     <Container
       sx={{
-        padding: '32px 16px',
-        background: '#FFFFFF',
-        boxShadow: ' 0px 2px 4px rgba(0, 0, 0, 0.15)',
-        width: { md: '664px' },
+        display: 'flex',
+        justifyContent: 'center',
+        width: '100%',
       }}
     >
-      <InputText label='Project name' helperText='' />
-      <InputText label='Description' helperText='' />
-      <InputSelect label='Project manager' placeholder='Select a person' />
-      <InputSelect label='Assigned to' placeholder='Select a person' />
-      <InputSelect label='Status' placeholder='Enabled' />
-      <Button label='Create project' />
+      <CircularProgress />
     </Container>
+  ) : (
+    <Formik
+      enableReinitialize
+      initialValues={{
+        project_name: project.name || '',
+        description: project.description || '',
+        project_manager: project.project_manager?.id || '',
+        assigned_to: project.assigned_to?.id || '',
+        status: project.status?.id || '',
+      }}
+      validationSchema={schemaValidate}
+      onSubmit={(val, { resetForm }) => {
+        if (editId) {
+          console.log('EDIT PROJECT', val);
+          // Request API with method patch or put to update project
+        } else {
+          console.log('NEW PROJECT', val);
+          // Request API with method post to create project
+        }
+        resetForm();
+      }}
+    >
+      {({
+        handleSubmit,
+        handleChange,
+        handleBlur,
+        values,
+        errors,
+        touched,
+      }) => (
+        <Container
+          sx={{
+            padding: '32px 16px',
+            background: '#FFFFFF',
+            boxShadow: ' 0px 2px 4px rgba(0, 0, 0, 0.15)',
+            width: { md: '664px' },
+          }}
+        >
+          <form>
+            <InputText
+              label='Project name'
+              id='project_name'
+              value={values.project_name}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              helperText={touched.project_name && errors.project_name}
+            />
+            <InputText
+              label='Description'
+              id='description'
+              value={values.description}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              helperText={touched.description && errors.description}
+            />
+            <InputSelect
+              label='Project manager'
+              id='project_manager'
+              options={{ source: project_manager, label: 'name', id: 'id' }}
+              value={values.project_manager}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              helperText={touched.project_manager && errors.project_manager}
+            />
+            <InputSelect
+              label='Assigned to'
+              id='assigned_to'
+              options={{
+                source: assigned_to,
+                label: ['name'],
+                id: ['id'],
+              }}
+              value={values.assigned_to}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              helperText={touched.assigned_to && errors.assigned_to}
+            />
+            <InputSelect
+              label='Status'
+              id='status'
+              options={{
+                source: status,
+                label: 'name',
+                id: 'id',
+              }}
+              value={values.status}
+              onBlur={handleBlur}
+              handleChange={handleChange}
+              helperText={touched.status && errors.status}
+            />
+            <Button handleClick={handleSubmit} label='Create project' />
+          </form>
+        </Container>
+      )}
+    </Formik>
   );
 };
 

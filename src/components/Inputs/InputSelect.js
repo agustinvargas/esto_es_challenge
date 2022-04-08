@@ -1,16 +1,19 @@
 import React from 'react';
-import { Select, MenuItem, Box } from '@mui/material';
+import { Select, MenuItem, Box, FormHelperText } from '@mui/material';
 import InputLabel from './InputLabel';
 
-const InputSelect = ({ label, placeholder }) => {
-  const [age, setAge] = React.useState('');
-
-  const handleChange = event => {
-    setAge(event.target.value);
-  };
-
+const InputSelect = ({
+  label,
+  handleBlur,
+  options,
+  handleChange,
+  value,
+  id,
+  helperText,
+}) => {
+  console.log('DATA', options);
   return (
-    <Box sx={{ marginBottom: '16px' }}>
+    <Box id={id} sx={{ marginBottom: '16px' }}>
       <InputLabel label={label} />
       <Select
         sx={{
@@ -20,21 +23,26 @@ const InputSelect = ({ label, placeholder }) => {
           color: '#595959',
           fontSize: '16px',
         }}
-        // multiple
-        displayEmpty
+        onBlur={handleBlur}
         labelId={label}
         fullWidth
-        value={age}
+        id={id}
+        value={value}
         onChange={handleChange}
-        renderValue={value => (value !== '' ? value : placeholder)}
+        name={id}
+        // renderValue={value => (value !== '' ? value : placeholder)}
       >
         <MenuItem value='' disabled>
           Choose an option
         </MenuItem>
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem>
+        {options?.source?.length > 0 &&
+          options?.source?.map(option => (
+            <MenuItem key={option[options.id]} value={option[options.id]}>
+              {option[options.label]}
+            </MenuItem>
+          ))}
       </Select>
+      <FormHelperText id={id}>{helperText}</FormHelperText>
     </Box>
   );
 };

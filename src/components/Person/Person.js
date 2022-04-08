@@ -1,4 +1,4 @@
-import { Avatar, Box } from '@mui/material';
+import { Avatar, Box, Typography } from '@mui/material';
 import React from 'react';
 
 const Person = ({ avatar, name }) => {
@@ -23,7 +23,16 @@ const Person = ({ avatar, name }) => {
         )
       )}
 
-      <span>{name}</span>
+      <Typography
+        component='span'
+        sx={{
+          fontSize: '12px',
+          lineHeight: '22px',
+          color: 'rgba(0, 0, 0, 0.65)',
+        }}
+      >
+        {name}
+      </Typography>
     </Box>
   );
 };

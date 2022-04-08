@@ -3,12 +3,25 @@ import { Box, FormHelperText } from '@mui/material';
 import OutlinedInput from './OutlinedInput';
 import InputLabel from './InputLabel';
 
-const InputText = ({ label, helperText }) => {
+const InputText = ({
+  label,
+  helperText,
+  id,
+  handleChange,
+  value,
+  handleBlur,
+}) => {
   return (
     <Box sx={{ marginBottom: '16px' }}>
       <InputLabel label={label} />
-      <OutlinedInput label={label} />
-      <FormHelperText id={helperText}>{helperText}</FormHelperText>
+      <OutlinedInput
+        id={id}
+        helperText={helperText}
+        handleChange={handleChange}
+        handleBlur={handleBlur}
+        value={value}
+      />
+      <FormHelperText id={id}>{helperText}</FormHelperText>
     </Box>
   );
 };
